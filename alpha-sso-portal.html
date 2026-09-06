@@ -123,8 +123,9 @@ h1{margin:0;font-size:18px;font-weight:500}h2{margin:0 0 8px;font-size:11px;font
     <input class="in code" id="code" inputmode="numeric" maxlength="6" placeholder="000000" aria-label="Verification code" />
     <button class="btn" type="submit">Verify</button>
     <div class="err" id="e2"></div>
-    <button class="link" type="button" id="mfa-back">Use a different account</button>
-    <div class="demo">This device will be remembered for 30 days. Lost phone? Recovery codes are in the vault.</div>
+    <div style="display:flex;gap:16px"><button class="link" type="button" id="mfa-resend">Resend code</button><button class="link" type="button" id="mfa-back">Use a different account</button></div>
+    <div class="demo" id="mfa-hint">Demo build · enter <b style="color:var(--text);font-weight:500">123456</b> to continue. In production this is a real text message.</div>
+    <div class="demo" style="border-top:0;padding-top:0">This device will be remembered for 30 days. Lost phone? Recovery codes are in the vault.</div>
   </form>
 </section>
 
@@ -261,6 +262,7 @@ $("#f-signin").addEventListener("submit",e=>{e.preventDefault();
 document.querySelectorAll("[data-idp]").forEach(b=>b.addEventListener("click",()=>{via=b.dataset.idp;toMfa()}));
 function toMfa(){$("#e1").textContent="";$("#mfa-via").textContent="via "+via;$("#code").value="";$("#e2").textContent="";show("s-mfa");setTimeout(()=>$("#code").focus(),50)}
 $("#mfa-back").addEventListener("click",()=>{$("#pass").value="";show("s-signin");$("#pass").focus()});
+$("#mfa-resend").addEventListener("click",()=>{$("#e2").textContent="";$("#code").value="123456";$("#code").focus();toast("Code sent to ·· 4417 · demo filled it in for you")});
 $("#code").addEventListener("input",e=>{e.target.value=e.target.value.replace(/\D/g,"").slice(0,6);if(e.target.value.length===6)$("#f-mfa").requestSubmit()});
 $("#f-mfa").addEventListener("submit",e=>{e.preventDefault();const c=$("#code").value;
   if(c!=="123456"){$("#e2").textContent=c.length<6?"Enter the 6-digit code":"Code didn't match · try again";$("#code").select();return}
