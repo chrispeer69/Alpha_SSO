@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Daily numbers — Sat Sep 5, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#0e1114;--bg-2:#14181c;--bg-3:#1a1f24;--line:#262d34;--line-2:#343d46;--text:#d5dae0;--text-2:#98a1ab;--text-3:#6a737d;--mark:#c8a24a;--up:#4fa373;--down:#c65b5b;--sans:"IBM Plex Sans",Arial,sans-serif;--mono:"IBM Plex Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:13px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.top{height:48px;display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--bg-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}
+.top .back{color:var(--text-2);text-decoration:none;font-size:11px;white-space:nowrap}.top .back:hover{color:var(--text)}
+.top .org{padding:5px 10px;border:1px solid var(--line-2);font-weight:500;font-size:12px}
+.top .tabs{display:flex;border:1px solid var(--line-2)}.top .tabs span{padding:4px 10px;font-size:11px;color:var(--text-2);border-right:1px solid var(--line-2)}.top .tabs span:last-child{border:0}.top .tabs span.on{background:#21272d;color:var(--text)}
+.top .r{margin-left:auto;font-size:11px;color:var(--text-2);display:flex;gap:16px}.top .r b{color:var(--text);font-weight:500}
+.page{padding:18px 24px 48px;max-width:1320px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:14px}
+h1{margin:0;font-size:18px;font-weight:500}h2{margin:0 0 8px;font-size:11px;font-weight:500;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase}
+.sub{color:var(--text-2);font-size:12px;margin-top:2px}
+.strip{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.k{background:var(--bg-2);padding:10px 12px;min-height:74px}.k .l{font-size:10.5px;color:var(--text-2);letter-spacing:.04em}.k .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:21px;font-weight:500;margin-top:5px;line-height:1.1}.k .d{font-family:var(--mono);font-size:11px;margin-top:3px}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--text-3)}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:18px}
+.panel{background:var(--bg-2);border:1px solid var(--line)}
+.ph{padding:8px 14px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.04em;color:var(--text-2);display:flex;justify-content:space-between}
+table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;font-weight:500;color:var(--text-2);font-size:10px;letter-spacing:.06em;padding:7px 12px;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:7px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}tbody tr:hover td{background:var(--bg-3)}td.r,th.r{text-align:right}
+tr.tot td{border-top:1px solid var(--line-2);font-weight:500;background:var(--bg-3)}
+.bar{display:inline-block;width:90px;height:6px;background:#21272d;vertical-align:middle;position:relative}.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--text-2)}.bar i.ok{background:var(--up)}.bar i.low{background:var(--down)}.bar b{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--mark)}
+.tag{font-family:var(--mono);font-size:10px;padding:1px 6px;border:1px solid var(--line-2);color:var(--text-2)}
+.row{display:flex;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line);font-size:12px}.row:last-child{border:0}.row .t{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-3)}
+.spark{display:block}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:18px}
+.tile{background:var(--bg-2);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 14px;min-height:60px;display:flex;align-items:center;gap:12px}.tile .n{font-weight:500}.tile .d{font-family:var(--mono);font-size:11px;color:var(--text-2);margin-top:2px}
+.foot{margin-top:18px;font-size:11px;color:var(--text-3);font-family:var(--mono)}
+@media(max-width:1000px){.strip{grid-template-columns:repeat(4,minmax(0,1fr))}.grid,.three{grid-template-columns:1fr}}
+@media(max-width:640px){.page{padding:12px}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.top .tabs,.top .r{display:none}td,th{padding:6px 8px}}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tw table{min-width:100%}
+@media(max-width:640px){
+  .top{height:auto;padding:8px 12px;flex-wrap:wrap;gap:8px}
+  .top .tabs{display:flex;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch}.top .tabs span{white-space:nowrap}
+  .top .r{display:flex;width:100%;font-size:10px;gap:10px}
+  .head{flex-direction:column;align-items:flex-start;gap:6px}.head .tag{white-space:normal}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}.k{min-height:0;padding:9px 10px}.k .v{font-size:18px}
+  .grid,.three{grid-template-columns:1fr !important;gap:12px;margin-top:12px}
+  .tw table{min-width:640px}
+  th:first-child,td:first-child{position:sticky;left:0;background:var(--bg-2);z-index:1}
+  tr.tot td:first-child{background:var(--bg-3)}tbody tr:hover td:first-child{background:var(--bg-3)}
+  .bar{width:60px}
+  .ph{flex-direction:column;align-items:flex-start;gap:2px}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{padding:9px 10px;min-height:0}
+  .row{padding:7px 10px;flex-wrap:wrap}.row .t{margin-left:auto}
+  .foot{font-size:10px}
+  h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+<style>
+#gate{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;z-index:100}
+#gate form{width:300px;border:1px solid var(--line);background:var(--bg-2);padding:22px}
+#gate h1{font-size:14px;font-weight:500;margin:0 0 4px}#gate p{margin:0 0 14px;font-size:11px;color:var(--text-2)}
+#gate input{width:100%;padding:9px 10px;background:var(--bg);border:1px solid var(--line-2);color:var(--text);font:14px var(--mono);letter-spacing:.2em;outline:none}
+#gate input:focus{border-color:var(--mark)}#gate button{margin-top:10px;width:100%;padding:9px;background:var(--text);color:var(--bg);border:0;font:12px var(--sans);cursor:pointer}
+#gate .err{color:var(--down);font-size:11px;margin-top:8px;min-height:14px;font-family:var(--mono)}
+body.locked>*:not(#gate){visibility:hidden}
+</style>
+<div id="gate"><form id="gf" autocomplete="off"><h1>Daily numbers · preview</h1><p>Enter the access code to view.</p><input id="pw" type="password" inputmode="numeric" placeholder="••••" autofocus aria-label="Access code"/><button type="submit">Open</button><div class="err" id="err"></div></form></div>
+<script>
+(async()=>{const H="03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";const b=document.body;b.classList.add("locked");
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)))].map(x=>x.toString(16).padStart(2,"0")).join("");
+const open=()=>{document.getElementById("gate").remove();b.classList.remove("locked")};
+if(sessionStorage.getItem("ok")===H)return open();
+document.getElementById("gf").addEventListener("submit",async e=>{e.preventDefault();const v=document.getElementById("pw").value.trim();
+if(await sha(v)===H){sessionStorage.setItem("ok",H);open()}else{document.getElementById("err").textContent="Incorrect code";document.getElementById("pw").select()}});
+})();
+</script>
+
+<div class="top">
+  <a class="back" href="alpha-sso-portal.html" title="Back to portal">← Portal</a>
+  <span class="org">All businesses</span>
+  <div class="tabs"><span class="on">All</span><span>Repair</span><span>Body</span><span>Expediting</span><span>Real estate</span><span>AM Spirits</span></div>
+  <div class="r"><span>Data as of <b class="num">Sat Sep 5, 11:40 PM</b></span><span>Digest sent <b class="num">6:00 AM</b></span></div>
+</div>
+
+<div class="page">
+  <div class="head">
+    <div><h1>Daily numbers</h1><div class="sub">Saturday, September 5, 2026 · 7 repair stores · 2 body shops · Manns Expediting 30 units · 5 AM Spirits groups · real estate</div></div>
+    <span class="tag">Sat = half day · comparisons vs same weekday, last 4 wks</span>
+  </div>
+
+  <div class="strip">
+    <div class="k"><div class="l">Revenue · yesterday</div><div class="v">$30,430</div><div class="d up">+4.1% DoD · +6.9% YoY</div></div>
+    <div class="k"><div class="l">Revenue · MTD</div><div class="v">$128,900</div><div class="d up">+6.2% MoM · +7.8% YoY</div></div>
+    <div class="k"><div class="l">Projected month</div><div class="v">$1,074,000</div><div class="d up">+2.3% vs target · +7.8% YoY</div></div>
+    <div class="k"><div class="l">Work in progress</div><div class="v">$214,600</div><div class="d flat">163 vehicles</div></div>
+    <div class="k"><div class="l">Cars · yesterday</div><div class="v">94</div><div class="d flat">avg RO $324</div></div>
+    <div class="k"><div class="l">Tires sold</div><div class="v">86</div><div class="d down">−7 vs avg Sat</div></div>
+    <div class="k"><div class="l">Labor hrs invoiced</div><div class="v">171.5</div><div class="d up">+9.5 vs avg Sat</div></div>
+    <div class="k"><div class="l">AR past 30 days</div><div class="v">$41,200</div><div class="d down">11 accounts · 3 fleet</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="ph"><span>Repair stores · yesterday</span><span>Bar = % of daily target · gold line = target</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Store</th><th class="r">Revenue</th><th>vs target</th><th class="r">Cars</th><th class="r">Avg RO</th><th class="r">Tires</th><th class="r">Labor hrs</th><th class="r">WIP $</th><th class="r">WIP cars</th><th class="r">Parts hold</th><th class="r">MTD</th></tr></thead>
+        <tbody class="num">
+          <tr><td style="font-family:var(--sans)">Wayne's Schrock</td><td class="r">$4,610</td><td><span class="bar"><i class="ok" style="width:100%"></i><b style="left:78%"></b></span></td><td class="r">14</td><td class="r">$329</td><td class="r">16</td><td class="r">27.0</td><td class="r">$31,900</td><td class="r">22</td><td class="r">3</td><td class="r">$19,840</td></tr>
+          <tr><td style="font-family:var(--sans)">Wayne's Powell</td><td class="r">$3,980</td><td><span class="bar"><i class="ok" style="width:96%"></i><b style="left:78%"></b></span></td><td class="r">12</td><td class="r">$332</td><td class="r">14</td><td class="r">22.5</td><td class="r">$27,400</td><td class="r">19</td><td class="r">2</td><td class="r">$17,210</td></tr>
+          <tr><td style="font-family:var(--sans)">Wayne's Westerville</td><td class="r">$3,420</td><td><span class="bar"><i class="ok" style="width:86%"></i><b style="left:78%"></b></span></td><td class="r">11</td><td class="r">$311</td><td class="r">12</td><td class="r">19.0</td><td class="r">$22,100</td><td class="r">17</td><td class="r">4</td><td class="r">$14,630</td></tr>
+          <tr><td style="font-family:var(--sans)">Ernie's Automotive</td><td class="r">$3,150</td><td><span class="bar"><i class="ok" style="width:82%"></i><b style="left:78%"></b></span></td><td class="r">10</td><td class="r">$315</td><td class="r">11</td><td class="r">18.0</td><td class="r">$19,800</td><td class="r">15</td><td class="r">2</td><td class="r">$13,420</td></tr>
+          <tr><td style="font-family:var(--sans)">Hilliard Automotive</td><td class="r">$2,890</td><td><span class="bar"><i style="width:74%"></i><b style="left:78%"></b></span></td><td class="r">9</td><td class="r">$321</td><td class="r">9</td><td class="r">16.5</td><td class="r">$17,300</td><td class="r">13</td><td class="r">1</td><td class="r">$12,060</td></tr>
+          <tr><td style="font-family:var(--sans)">Petty's Automotive</td><td class="r">$2,640</td><td><span class="bar"><i class="low" style="width:64%"></i><b style="left:78%"></b></span></td><td class="r">9</td><td class="r">$293</td><td class="r">8</td><td class="r">14.0</td><td class="r">$14,900</td><td class="r">12</td><td class="r">5</td><td class="r">$10,980</td></tr>
+          <tr><td style="font-family:var(--sans)">Complete Brake</td><td class="r">$2,310</td><td><span class="bar"><i class="low" style="width:58%"></i><b style="left:78%"></b></span></td><td class="r">7</td><td class="r">$330</td><td class="r">7</td><td class="r">12.5</td><td class="r">$11,700</td><td class="r">9</td><td class="r">1</td><td class="r">$9,540</td></tr>
+          <tr class="tot"><td style="font-family:var(--sans)">Repair total</td><td class="r">$23,000</td><td></td><td class="r">72</td><td class="r">$319</td><td class="r">77</td><td class="r">129.5</td><td class="r">$145,100</td><td class="r">107</td><td class="r">18</td><td class="r">$97,680</td></tr>
+        </tbody>
+      </table></div>
+      <div class="ph" style="border-top:1px solid var(--line)"><span>Body shops · yesterday</span><span>Cycle = avg days keys-to-keys</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Shop</th><th class="r">Revenue</th><th>vs target</th><th class="r">Delivered</th><th class="r">Avg RO</th><th class="r">Estimates out</th><th class="r">Labor hrs</th><th class="r">WIP $</th><th class="r">WIP cars</th><th class="r">Cycle</th><th class="r">MTD</th></tr></thead>
+        <tbody class="num">
+          <tr><td style="font-family:var(--sans)">T&amp;C Auto Body</td><td class="r">$4,280</td><td><span class="bar"><i class="ok" style="width:92%"></i><b style="left:78%"></b></span></td><td class="r">2</td><td class="r">$2,140</td><td class="r">6</td><td class="r">24.0</td><td class="r">$41,200</td><td class="r">31</td><td class="r">9.4</td><td class="r">$18,300</td></tr>
+          <tr><td style="font-family:var(--sans)">Excite Collision</td><td class="r">$3,150</td><td><span class="bar"><i style="width:73%"></i><b style="left:78%"></b></span></td><td class="r">1</td><td class="r">$3,150</td><td class="r">4</td><td class="r">18.0</td><td class="r">$28,300</td><td class="r">25</td><td class="r">11.1</td><td class="r">$12,920</td></tr>
+          <tr class="tot"><td style="font-family:var(--sans)">Body total</td><td class="r">$7,430</td><td></td><td class="r">3</td><td class="r">$2,477</td><td class="r">10</td><td class="r">42.0</td><td class="r">$69,500</td><td class="r">56</td><td class="r">10.2</td><td class="r">$31,220</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="ph"><span>Revenue · last 6 business days</span><span class="num">$ thousands</span></div>
+        <div style="padding:12px 14px">
+          <svg class="spark" viewBox="0 0 320 90" width="100%" height="90" role="img" aria-label="Daily revenue Mon to Sat">
+            <line x1="0" y1="34" x2="320" y2="34" stroke="#c8a24a" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="318" y="30" fill="#98a1ab" font-size="9" text-anchor="end" font-family="IBM Plex Mono">target 39.0</text>
+            <g fill="#4a5560">
+              <rect x="10" y="30" width="38" height="52"/><rect x="62" y="24" width="38" height="58"/><rect x="114" y="17" width="38" height="65"/><rect x="166" y="19" width="38" height="63"/><rect x="218" y="8" width="38" height="74"/>
+            </g>
+            <rect x="270" y="46" width="38" height="36" fill="#98a1ab"/>
+            <g fill="#d5dae0" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">
+              <text x="29" y="27">37.4</text><text x="81" y="21">39.1</text><text x="133" y="14">41.2</text><text x="185" y="16">40.8</text><text x="237" y="5">43.5</text><text x="289" y="43">30.4</text>
+            </g>
+            <g fill="#6a737d" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">
+              <text x="29" y="90">Mon</text><text x="81" y="90">Tue</text><text x="133" y="90">Wed</text><text x="185" y="90">Thu</text><text x="237" y="90">Fri</text><text x="289" y="90">Sat</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:16px">
+        <div class="ph"><span>Needs attention</span></div>
+        <div class="row"><span class="tag" style="color:var(--down);border-color:var(--down)">PETTY'S</span>Below target 4 of last 5 days · 5 cars on parts hold<span class="t">2d</span></div>
+        <div class="row"><span class="tag" style="color:var(--down);border-color:var(--down)">AR</span>Manns Expediting $14,800 past 60<span class="t">61d</span></div>
+        <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">BODY</span>Excite cycle time 11.1d, target 9<span class="t">wk</span></div>
+        <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">TIRES</span>Tires down 3 wks running, all stores<span class="t">3w</span></div>
+        <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">MANNS</span>4 units past registration date<span class="t">now</span></div>
+      </div>
+
+      <div class="panel" style="margin-top:16px">
+        <div class="ph"><span>Manns Expediting · 30 units</span></div>
+        <div class="tw"><table>
+          <tbody class="num">
+            <tr><td style="font-family:var(--sans)">On rent</td><td class="r">24 / 30</td><td class="r up">80%</td></tr>
+            <tr><td style="font-family:var(--sans)">Revenue · yesterday</td><td class="r">$1,560</td><td class="r flat">$65/unit</td></tr>
+            <tr><td style="font-family:var(--sans)">Revenue · MTD</td><td class="r">$7,410</td><td class="r up">+6%</td></tr>
+            <tr><td style="font-family:var(--sans)">In shop</td><td class="r">2</td><td class="r flat">Hilliard, Powell</td></tr>
+            <tr><td style="font-family:var(--sans)">Service due ≤ 7d</td><td class="r">3</td><td class="r flat"></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grid" style="grid-template-columns:1.6fr 1fr">
+    <div class="panel">
+      <div class="ph"><span>Growth · by location</span><span>DoD = vs same weekday last week · MoM = MTD vs same days last month · YoY = YTD vs 2025</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Location</th><th class="r">Yesterday</th><th class="r">DoD</th><th class="r">MTD</th><th class="r">MoM</th><th class="r">Aug</th><th class="r">YTD 2026</th><th class="r">YoY</th></tr></thead>
+        <tbody class="num">
+<tr><td style="font-family:var(--sans)">Wayne's Schrock</td><td class="r">$4,610</td><td class="r up">+4.6%</td><td class="r">$19,840</td><td class="r up">+7.1%</td><td class="r">$159,200</td><td class="r">$1,421,000</td><td class="r up">+11.2%</td></tr>
+<tr><td style="font-family:var(--sans)">Wayne's Powell</td><td class="r">$3,980</td><td class="r up">+3.9%</td><td class="r">$17,210</td><td class="r up">+5.8%</td><td class="r">$138,900</td><td class="r">$1,244,000</td><td class="r up">+9.6%</td></tr>
+<tr><td style="font-family:var(--sans)">Wayne's Westerville</td><td class="r">$3,420</td><td class="r up">+1.2%</td><td class="r">$14,630</td><td class="r up">+3.1%</td><td class="r">$118,400</td><td class="r">$1,061,000</td><td class="r up">+6.4%</td></tr>
+<tr><td style="font-family:var(--sans)">Ernie's Automotive</td><td class="r">$3,150</td><td class="r up">+6.8%</td><td class="r">$13,420</td><td class="r up">+8.9%</td><td class="r">$106,100</td><td class="r">$948,000</td><td class="r up">+12.8%</td></tr>
+<tr><td style="font-family:var(--sans)">Hilliard Automotive</td><td class="r">$2,890</td><td class="r down">-1.7%</td><td class="r">$12,060</td><td class="r up">+0.4%</td><td class="r">$97,300</td><td class="r">$872,000</td><td class="r up">+3.1%</td></tr>
+<tr><td style="font-family:var(--sans)">Petty's Automotive</td><td class="r">$2,640</td><td class="r down">-8.3%</td><td class="r">$10,980</td><td class="r down">-6.2%</td><td class="r">$89,600</td><td class="r">$801,000</td><td class="r down">-2.4%</td></tr>
+<tr><td style="font-family:var(--sans)">Complete Brake</td><td class="r">$2,310</td><td class="r down">-3.4%</td><td class="r">$9,540</td><td class="r down">-1.9%</td><td class="r">$76,200</td><td class="r">$684,000</td><td class="r up">+1.8%</td></tr>
+<tr><td style="font-family:var(--sans)">T&amp;C Auto Body</td><td class="r">$4,280</td><td class="r up">+9.1%</td><td class="r">$18,300</td><td class="r up">+11.4%</td><td class="r">$141,000</td><td class="r">$1,266,000</td><td class="r up">+14.7%</td></tr>
+<tr><td style="font-family:var(--sans)">Excite Collision</td><td class="r">$3,150</td><td class="r down">-4.9%</td><td class="r">$12,920</td><td class="r down">-3.6%</td><td class="r">$114,300</td><td class="r">$1,018,000</td><td class="r down">-0.9%</td></tr>
+<tr class="tot"><td style="font-family:var(--sans)">All shops</td><td class="r">$30,430</td><td class="r up">+4.1%</td><td class="r">$128,900</td><td class="r up">+6.2%</td><td class="r">$1,041,000</td><td class="r">$9,315,000</td><td class="r up">+8.4%</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span>Growth · all shops by month</span><span class="num">$ thousands</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Month</th><th class="r">2026</th><th class="r">2025</th><th class="r">YoY</th><th class="r">MoM</th></tr></thead>
+        <tbody class="num">
+          <tr><td>Sep · MTD</td><td class="r">128.9</td><td class="r">119.6</td><td class="r up">+7.8%</td><td class="r up">+6.2%</td></tr>
+          <tr><td>Aug</td><td class="r">1,041</td><td class="r">964</td><td class="r up">+8.0%</td><td class="r up">+4.3%</td></tr>
+          <tr><td>Jul</td><td class="r">998</td><td class="r">921</td><td class="r up">+8.4%</td><td class="r down">−2.1%</td></tr>
+          <tr><td>Jun</td><td class="r">1,019</td><td class="r">947</td><td class="r up">+7.6%</td><td class="r up">+1.5%</td></tr>
+          <tr><td>May</td><td class="r">1,004</td><td class="r">918</td><td class="r up">+9.4%</td><td class="r up">+3.0%</td></tr>
+          <tr><td>Apr</td><td class="r">975</td><td class="r">902</td><td class="r up">+8.1%</td><td class="r up">+2.2%</td></tr>
+          <tr><td>Mar</td><td class="r">954</td><td class="r">871</td><td class="r up">+9.5%</td><td class="r up">+5.9%</td></tr>
+          <tr><td>Feb</td><td class="r">901</td><td class="r">826</td><td class="r up">+9.1%</td><td class="r down">−3.8%</td></tr>
+          <tr><td>Jan</td><td class="r">937</td><td class="r">849</td><td class="r up">+10.4%</td><td class="r down">−4.6%</td></tr>
+          <tr class="tot"><td>YTD</td><td class="r">9,315</td><td class="r">8,594</td><td class="r up">+8.4%</td><td class="r"></td></tr>
+          <tr class="tot"><td>Trailing 12</td><td class="r">12,180</td><td class="r">11,290</td><td class="r up">+7.9%</td><td class="r"></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="three">
+    <div class="panel">
+      <div class="ph"><span>Acquisition · new shop</span><span class="tag">Close Oct 15</span></div>
+      <div class="row">LOI signed<span class="t up">done</span></div>
+      <div class="row">Financials reviewed (3 yrs)<span class="t up">done</span></div>
+      <div class="row">Lease assignment<span class="t" style="color:var(--mark)">landlord</span></div>
+      <div class="row">SBA 7(a) · $640k<span class="t" style="color:var(--mark)">underwriting</span></div>
+      <div class="row">Equipment appraisal<span class="t">Sep 12</span></div>
+      <div class="row">Employee offers<span class="t">Sep 25</span></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span>Real estate</span><span class="num">8 properties</span></div>
+      <div class="tw"><table><tbody class="num">
+        <tr><td style="font-family:var(--sans)">Rent roll · monthly</td><td class="r">$61,400</td><td class="r up">100% collected</td></tr>
+        <tr><td style="font-family:var(--sans)">Leases expiring ≤ 90d</td><td class="r">1</td><td class="r flat">Schrock bay 3</td></tr>
+        <tr><td style="font-family:var(--sans)">Watchlist · new listings</td><td class="r">3</td><td class="r flat">industrial, Franklin Co.</td></tr>
+        <tr><td style="font-family:var(--sans)">Watchlist · price drops</td><td class="r">1</td><td class="r down">−$40k · Rt 161 lot</td></tr>
+        <tr><td style="font-family:var(--sans)">Property tax due</td><td class="r">Nov 1</td><td class="r flat">$48,900</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span>AM Spirits</span><span class="num">5 groups · 112 members</span></div>
+      <div class="row">Next: AM Spirits 1<span class="t">Mon 5:00 AM</span></div>
+      <div class="row">Attendance · last week<span class="t">87 / 112</span></div>
+      <div class="row">New members · Sept<span class="t up">+6</span></div>
+      <div class="row">Dues outstanding<span class="t" style="color:var(--mark)">9</span></div>
+      <div class="row">Speaker slot open<span class="t">Sep 18</span></div>
+    </div>
+  </div>
+
+
+  <div class="grid" style="grid-template-columns:1.3fr 1fr">
+    <div class="panel">
+      <div class="ph" id="alerts"><span>Email alerts · rules</span><span>All to <span class="num" style="color:var(--text)">wayne@waynesauto.com</span> · 10 of 11 on</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Alert</th><th>Trigger</th><th>When</th><th class="r">Last sent</th><th class="r">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Daily numbers digest</td><td>Every business day</td><td class="num">6:00 AM</td><td class="r num">Sat 6:00 AM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Store below target</td><td>Any store &lt; 80% of daily target</td><td class="num">6:00 AM</td><td class="r num">Sat 6:00 AM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Month pace</td><td>Projected month &lt; $1.05M</td><td class="num">Mon 6:00 AM</td><td class="r num">Aug 31</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>WIP aging</td><td>Any car in shop &gt; 10 days</td><td class="num">Daily</td><td class="r num">Fri 6:00 AM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>AR past 60</td><td>Any account &gt; $5,000 past 60 days</td><td class="num">Immediate</td><td class="r num">Thu 2:14 PM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Tire trend</td><td>Tires down 3 weeks running</td><td class="num">Mon 6:00 AM</td><td class="r num">Aug 31</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Expediting compliance</td><td>Registration, insurance, or DOT expiring ≤ 14 days</td><td class="num">Immediate</td><td class="r num">Sat 8:02 AM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Acquisition milestone</td><td>Any deal task changes status</td><td class="num">Immediate</td><td class="r num">Wed 4:40 PM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Lease expiring</td><td>Any lease ≤ 90 days out</td><td class="num">Mon 6:00 AM</td><td class="r num">Aug 31</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>Real estate watchlist</td><td>New listing or price drop on saved search</td><td class="num">Immediate</td><td class="r num">Fri 11:20 AM</td><td class="r"><span class="tag" style="color:var(--up);border-color:var(--up)">ON</span></td></tr>
+          <tr><td>AM Spirits dues</td><td>Dues outstanding &gt; 30 days</td><td class="num">1st of month</td><td class="r num">Sep 1</td><td class="r"><span class="tag">OFF</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span>Email alerts · sent this week</span><span class="num">14</span></div>
+      <div class="row"><span class="tag">DIGEST</span>Daily numbers · Sat<span class="t">Sat 6:00 AM</span></div>
+      <div class="row"><span class="tag" style="color:var(--down);border-color:var(--down)">TARGET</span>Petty's 64% · Complete Brake 58%<span class="t">Sat 6:00 AM</span></div>
+      <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">MANNS</span>4 units past registration<span class="t">Sat 8:02 AM</span></div>
+      <div class="row"><span class="tag">DIGEST</span>Daily numbers · Fri<span class="t">Fri 6:00 AM</span></div>
+      <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">WIP</span>3 cars &gt; 10 days at Excite<span class="t">Fri 6:00 AM</span></div>
+      <div class="row"><span class="tag" style="color:var(--mark);border-color:var(--mark)">RE</span>Price drop −$40k · Rt 161 lot<span class="t">Fri 11:20 AM</span></div>
+      <div class="row"><span class="tag" style="color:var(--down);border-color:var(--down)">AR</span>Manns Expediting $14,800 past 60<span class="t">Thu 2:14 PM</span></div>
+      <div class="row"><span class="tag">DEAL</span>SBA 7(a) moved to underwriting<span class="t">Wed 4:40 PM</span></div>
+      <div class="row"><span class="tag">DIGEST</span>Daily numbers · Thu, Wed, Tue, Mon<span class="t">6:00 AM</span></div>
+      <div class="ph" style="border-top:1px solid var(--line);border-bottom:0"><span>Delivery</span><span>One inbox · other addresses forward in · reply STOP to pause any rule</span></div>
+    </div>
+  </div>
+
+
+  <div class="three" style="margin-top:18px">
+    <div class="panel"><div class="ph"><span>Research</span><span class="num">8 sites</span></div><div class="row"><span style="font-weight:500">LoopNet</span><span style="color:var(--text-3);font-size:11px">commercial listings</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">CoStar</span><span style="color:var(--text-3);font-size:11px">comps, market data</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Zillow</span><span style="color:var(--text-3);font-size:11px">residential watchlist</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Franklin Co. Auditor</span><span style="color:var(--text-3);font-size:11px">parcels, tax</span><span class="t"><span class="tag" style="">LINK</span></span></div><div class="row"><span style="font-weight:500">Bloomberg</span><span style="color:var(--text-3);font-size:11px">markets</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">WSJ</span><span style="color:var(--text-3);font-size:11px">news</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Ratchet+Wrench</span><span style="color:var(--text-3);font-size:11px">industry</span><span class="t"><span class="tag" style="">LINK</span></span></div><div class="row"><span style="font-weight:500">BizBuySell</span><span style="color:var(--text-3);font-size:11px">shops for sale</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div></div>
+    <div class="panel"><div class="ph"><span>Management</span><span class="num">8 sites</span></div><div class="row"><span style="font-weight:500">Google Workspace</span><span style="color:var(--text-3);font-size:11px">email, calendar, drive</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">QuickBooks Online</span><span style="color:var(--text-3);font-size:11px">books, 11 entities</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Huntington Business</span><span style="color:var(--text-3);font-size:11px">banking</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">ADP</span><span style="color:var(--text-3);font-size:11px">payroll, 140 employees</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">CCC ONE</span><span style="color:var(--text-3);font-size:11px">body shop estimating</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Samsara</span><span style="color:var(--text-3);font-size:11px">Manns fleet tracking</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">DocuSign</span><span style="color:var(--text-3);font-size:11px">contracts</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">Meetup</span><span style="color:var(--text-3);font-size:11px">AM Spirits</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div></div>
+    <div class="panel"><div class="ph"><span>Creative</span><span class="num">8 sites</span></div><div class="row"><span style="font-weight:500">Canva</span><span style="color:var(--text-3);font-size:11px">social, signage</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">Claude</span><span style="color:var(--text-3);font-size:11px">writing, analysis</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">Meta Business Suite</span><span style="color:var(--text-3);font-size:11px">Facebook, Instagram</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Google Business Profile</span><span style="color:var(--text-3);font-size:11px">9 locations, reviews</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">YouTube Studio</span><span style="color:var(--text-3);font-size:11px">shop videos</span><span class="t"><span class="tag" style="color:var(--up);border-color:var(--up)">SSO</span></span></div><div class="row"><span style="font-weight:500">Mailchimp</span><span style="color:var(--text-3);font-size:11px">customer email</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Adobe Express</span><span style="color:var(--text-3);font-size:11px">graphics</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div><div class="row"><span style="font-weight:500">Notion</span><span style="color:var(--text-3);font-size:11px">ideas, planning</span><span class="t"><span class="tag" style="color:var(--mark);border-color:var(--mark)">VAULT</span></span></div></div>
+  </div>
+  <p class="foot" style="margin-top:8px">SSO = opens signed in. VAULT = portal fills the saved password, one click. LINK = public site, no login.</p>
+
+  <div class="tiles">
+    <div class="tile"><div><div class="n">Repair shop system</div><div class="d">7 stores · open</div></div></div>
+    <div class="tile"><div><div class="n">Body shop system</div><div class="d">2 shops · open</div></div></div>
+    <div class="tile"><div><div class="n">Manns Expediting</div><div class="d">30 units · open</div></div></div>
+    <div class="tile"><div><div class="n">Accounting</div><div class="d">AR / AP · open</div></div></div>
+    <div class="tile"><div><div class="n">Financing</div><div class="d">SBA file · open</div></div></div>
+    <div class="tile"><div><div class="n">Email</div><div class="d">one inbox · 14 unread</div></div></div>
+    <div class="tile"><div><div class="n">Real estate</div><div class="d">link</div></div></div>
+    <div class="tile"><div><div class="n">AM Spirits 1–5</div><div class="d">link</div></div></div>
+  </div>
+
+  <p class="foot">Signed in once. 24 sites, 0 passwords typed. Same board emailed daily 6:00 AM.</p>
+</div>
+</body>
+</html>

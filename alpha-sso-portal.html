@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wayne's Auto — Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#0e1114;--bg-2:#14181c;--bg-3:#1a1f24;--line:#262d34;--line-2:#343d46;--text:#d5dae0;--text-2:#98a1ab;--text-3:#6a737d;--mark:#c8a24a;--up:#4fa373;--down:#c65b5b;--sans:"IBM Plex Sans",Arial,sans-serif;--mono:"IBM Plex Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--text);font:13px/1.45 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}button{font:inherit;cursor:pointer}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.screen{display:none}.screen.on{display:block}
+
+/* ---- auth screens ---- */
+.auth{min-height:100%;place-items:center;padding:24px}
+.auth.on{display:grid}
+.card{width:340px;max-width:100%;border:1px solid var(--line);background:var(--bg-2);padding:24px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.brand .mk{width:26px;height:26px;border:1px solid var(--mark);color:var(--mark);display:grid;place-items:center;font:500 12px var(--mono)}
+.brand .nm{font-weight:500}.brand .nm small{display:block;color:var(--text-3);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:400}
+.card h1{font-size:15px;font-weight:500;margin:0 0 4px}.card p{margin:0 0 14px;font-size:11.5px;color:var(--text-2)}
+label{display:block;font-size:10.5px;color:var(--text-2);letter-spacing:.04em;margin:10px 0 4px}
+.in{width:100%;padding:9px 10px;background:var(--bg);border:1px solid var(--line-2);color:var(--text);font:13px var(--sans);outline:none}
+.in:focus{border-color:var(--mark)}.in.code{font:16px var(--mono);letter-spacing:.35em;text-align:center}
+.btn{margin-top:12px;width:100%;padding:9px;background:var(--text);color:var(--bg);border:0;font-weight:500}
+.btn.alt{background:transparent;color:var(--text);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.btn.alt i{width:14px;height:14px;border:1px solid var(--line-2);display:inline-block;font:500 9px/12px var(--mono);font-style:normal;text-align:center;color:var(--text-2)}
+.or{display:flex;align-items:center;gap:10px;margin:14px 0 6px;color:var(--text-3);font-size:10.5px;letter-spacing:.06em}.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+.err{color:var(--down);font-size:11px;margin-top:8px;min-height:14px;font-family:var(--mono)}
+.demo{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-size:10.5px;color:var(--text-3);font-family:var(--mono)}
+.card .who{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);background:var(--bg);margin-bottom:12px;font-size:12px}
+.av{width:24px;height:24px;border-radius:50%;background:#21272d;border:1px solid var(--line-2);display:grid;place-items:center;font:500 10px var(--mono);color:var(--text-2)}
+.link{background:none;border:0;color:var(--text-2);font-size:11px;padding:0;margin-top:12px;text-decoration:underline;text-underline-offset:3px}
+
+/* ---- portal ---- */
+.top{height:48px;display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--bg-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}
+.top .org{padding:5px 10px;border:1px solid var(--line-2);font-weight:500;font-size:12px;white-space:nowrap}
+.search{flex:1;max-width:420px;position:relative}
+.search input{width:100%;padding:6px 10px 6px 30px;background:var(--bg);border:1px solid var(--line-2);color:var(--text);font:12px var(--sans);outline:none}
+.search input:focus{border-color:var(--mark)}.search:before{content:"⌕";position:absolute;left:10px;top:5px;color:var(--text-3);font-size:14px}
+.search kbd{position:absolute;right:8px;top:6px;font:10px var(--mono);color:var(--text-3);border:1px solid var(--line-2);padding:0 5px}
+.top .r{margin-left:auto;font-size:11px;color:var(--text-2);display:flex;gap:14px;align-items:center}.top .r b{color:var(--text);font-weight:500}
+.top .r .chip{display:flex;align-items:center;gap:8px;padding:3px 8px 3px 3px;border:1px solid var(--line-2)}
+.top .r button{background:none;border:1px solid var(--line-2);color:var(--text-2);padding:4px 9px;font-size:11px}.top .r button:hover{color:var(--text);border-color:var(--text-3)}
+.page{padding:18px 24px 48px;max-width:1320px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:14px}
+h1{margin:0;font-size:18px;font-weight:500}h2{margin:0 0 8px;font-size:11px;font-weight:500;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase;display:flex;justify-content:space-between}h2 span{font-weight:400;font-family:var(--mono);letter-spacing:0;text-transform:none}
+.sub{color:var(--text-2);font-size:12px;margin-top:2px}
+.tag{font-family:var(--mono);font-size:10px;padding:1px 6px;border:1px solid var(--line-2);color:var(--text-2);white-space:nowrap}
+.tag.sso{color:var(--up);border-color:var(--up)}.tag.vault{color:var(--mark);border-color:var(--mark)}.tag.link{color:var(--text-2)}.tag.int{color:#7fa7d9;border-color:#4f6e96}
+.strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.k{background:var(--bg-2);padding:10px 12px;min-height:70px}.k .l{font-size:10.5px;color:var(--text-2);letter-spacing:.04em}.k .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:21px;font-weight:500;margin-top:5px;line-height:1.1}.k .d{font-family:var(--mono);font-size:11px;margin-top:3px;color:var(--text-3)}
+.up{color:var(--up)}.down{color:var(--down)}
+.sec{margin-top:22px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.tile{background:var(--bg-2);border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 14px;min-height:62px;display:flex;align-items:center;gap:12px;text-align:left;color:var(--text);width:100%}
+.tile:hover{background:var(--bg-3)}.tile:focus-visible{outline:1px solid var(--mark);outline-offset:-1px}
+.tile .ic{width:30px;height:30px;flex:none;border:1px solid var(--line-2);display:grid;place-items:center;font:500 11px var(--mono);color:var(--text-2);background:var(--bg)}
+.tile .n{font-weight:500}.tile .d{font-family:var(--mono);font-size:11px;color:var(--text-2);margin-top:2px}.tile .t{margin-left:auto}
+.tile.wide{grid-column:span 2}.tile.wide .ic{border-color:var(--mark);color:var(--mark)}
+.tile.hide{display:none}.sec.hide{display:none}
+.rows{border:1px solid var(--line);background:var(--bg-2)}
+.row{display:flex;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line);font-size:12px}.row:last-child{border:0}.row .t{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-3)}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start}
+.foot{margin-top:18px;font-size:11px;color:var(--text-3);font-family:var(--mono)}
+.empty{padding:14px;border:1px dashed var(--line-2);color:var(--text-3);font-size:12px;display:none;margin-top:22px}
+
+/* ---- launch modal ---- */
+#launch{position:fixed;inset:0;background:rgba(14,17,20,.78);display:none;place-items:center;z-index:50}
+#launch.on{display:grid}
+#launch .box{width:360px;max-width:92vw;border:1px solid var(--line-2);background:var(--bg-2);padding:18px 20px}
+#launch h3{margin:0 0 2px;font-size:14px;font-weight:500}#launch .s{color:var(--text-2);font-size:11px;margin-bottom:12px}
+#launch ol{list-style:none;margin:0;padding:0}#launch li{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:12px;color:var(--text-3)}
+#launch li i{width:14px;height:14px;border:1px solid var(--line-2);display:inline-block;flex:none}
+#launch li.doing{color:var(--text)}#launch li.doing i{border-color:var(--mark);background:linear-gradient(90deg,var(--mark) 50%,transparent 50%);background-size:200% 100%;animation:sw .8s linear infinite}
+#launch li.done{color:var(--text)}#launch li.done i{border-color:var(--up);background:var(--up)}
+@keyframes sw{to{background-position:-200% 0}}
+#launch .act{display:flex;gap:8px;margin-top:12px}#launch .act button{flex:1;padding:8px;border:1px solid var(--line-2);background:transparent;color:var(--text-2)}
+#launch .act button.go{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:500}#launch .act button[disabled]{opacity:.35;cursor:default}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--bg-3);border:1px solid var(--line-2);padding:8px 14px;font-size:12px;display:none;z-index:60}.toast.on{display:block}
+
+@media(max-width:1000px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .top{height:auto;padding:8px 12px;flex-wrap:wrap;gap:8px}.search{max-width:none;order:3;width:100%;flex-basis:100%}.search kbd{display:none}
+  .top .r{width:auto;gap:8px;font-size:10px}.top .r .sess{display:none}
+  .page{padding:12px}.head{flex-direction:column;align-items:flex-start;gap:6px}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}.k{min-height:0;padding:9px 10px}.k .v{font-size:18px}
+  .tiles{grid-template-columns:1fr 1fr}.tile{padding:9px 10px;min-height:0}.tile.wide{grid-column:span 2}
+  h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. SIGN IN ============ -->
+<section id="s-signin" class="screen auth on">
+  <form class="card" id="f-signin" autocomplete="off">
+    <div class="brand"><div class="mk">W</div><div class="nm">Wayne's Auto<small>Owner portal</small></div></div>
+    <h1>Sign in</h1>
+    <p>One sign-in for every business, every site.</p>
+    <label for="email">Work email</label>
+    <input class="in" id="email" type="email" value="wayne@waynesauto.com" spellcheck="false" />
+    <label for="pass">Password</label>
+    <input class="in" id="pass" type="password" placeholder="••••••••" autofocus />
+    <button class="btn" type="submit">Continue</button>
+    <div class="or">OR</div>
+    <button class="btn alt" type="button" data-idp="Google"><i>G</i>Continue with Google</button>
+    <button class="btn alt" type="button" data-idp="Microsoft"><i>M</i>Continue with Microsoft</button>
+    <div class="err" id="e1"></div>
+    <div class="demo">Demo build · any password works · verification code at next step: 123456</div>
+  </form>
+</section>
+
+<!-- ============ 2. VERIFY ============ -->
+<section id="s-mfa" class="screen auth">
+  <form class="card" id="f-mfa" autocomplete="off">
+    <div class="brand"><div class="mk">W</div><div class="nm">Wayne's Auto<small>Owner portal</small></div></div>
+    <div class="who"><div class="av">WP</div><div><b style="font-weight:500">Wayne Peer</b><div style="color:var(--text-3);font-size:11px" id="mfa-via">via password</div></div></div>
+    <h1>Check your phone</h1>
+    <p>We sent a 6-digit code to the phone ending in <b class="num" style="color:var(--text);font-weight:500">·· 4417</b>. Codes expire in 5 minutes.</p>
+    <input class="in code" id="code" inputmode="numeric" maxlength="6" placeholder="000000" aria-label="Verification code" />
+    <button class="btn" type="submit">Verify</button>
+    <div class="err" id="e2"></div>
+    <button class="link" type="button" id="mfa-back">Use a different account</button>
+    <div class="demo">This device will be remembered for 30 days. Lost phone? Recovery codes are in the vault.</div>
+  </form>
+</section>
+
+<!-- ============ 3. PORTAL ============ -->
+<section id="s-home" class="screen">
+  <div class="top">
+    <span class="org">Wayne's Auto</span>
+    <div class="search"><input id="q" placeholder="Search sites, systems, people…" /><kbd>/</kbd></div>
+    <div class="r">
+      <span class="sess">Session expires <b class="num" id="sess"></b></span>
+      <span class="chip"><span class="av">WP</span><b>Wayne</b><span>· Owner</span></span>
+      <button id="signout" type="button">Sign out</button>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="head">
+      <div><h1 id="greet">Good morning, Wayne</h1><div class="sub" id="subline"></div></div>
+      <span class="tag">24 sites · 0 passwords typed today</span>
+    </div>
+
+    <div class="strip">
+      <div class="k"><div class="l">SITES CONNECTED</div><div class="v">24</div><div class="d">10 SSO · 12 vault · 2 link</div></div>
+      <div class="k"><div class="l">OPENED TODAY</div><div class="v" id="k-open">0</div><div class="d">this session</div></div>
+      <div class="k"><div class="l">PASSWORDS TYPED</div><div class="v up">0</div><div class="d">since Jul 1</div></div>
+      <div class="k"><div class="l">NEEDS ATTENTION</div><div class="v down">5</div><div class="d">on daily board</div></div>
+      <div class="k"><div class="l">ALERTS SENT · WK</div><div class="v">14</div><div class="d">10 of 11 rules on</div></div>
+      <div class="k"><div class="l">DIGEST</div><div class="v">6:00</div><div class="d">AM daily · sent</div></div>
+    </div>
+
+    <div class="sec" data-sec="today">
+      <h2>Today <span>Sat Sep 6 · data as of 5:52 AM</span></h2>
+      <div class="two">
+        <div class="tiles" id="g-today"></div>
+        <div class="rows" id="attn">
+          <div class="row" style="color:var(--text-2);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase">Needs attention</div>
+          <div class="row"><span class="tag">PETTY'S</span><span>Below target 4 of last 5 days · 5 cars on parts hold</span><span class="t">2d</span></div>
+          <div class="row"><span class="tag">AR</span><span>Manns Expediting $14,800 past 60</span><span class="t">61d</span></div>
+          <div class="row"><span class="tag">BODY</span><span>Excite cycle time 11.1d, target 9</span><span class="t">wk</span></div>
+          <div class="row"><span class="tag">TIRES</span><span>Tires down 3 wks running, all stores</span><span class="t">3w</span></div>
+          <div class="row"><span class="tag">MANNS</span><span>4 units past registration date</span><span class="t">now</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="sec-recent" style="display:none">
+      <h2>Recently opened <span id="rc-n"></span></h2>
+      <div class="rows" id="recent"></div>
+    </div>
+
+    <div class="sec" data-sec="systems"><h2>Business systems <span>internal · 8</span></h2><div class="tiles" id="g-systems"></div></div>
+    <div class="sec" data-sec="management"><h2>Management <span>8 sites</span></h2><div class="tiles" id="g-management"></div></div>
+    <div class="sec" data-sec="research"><h2>Research <span>8 sites</span></h2><div class="tiles" id="g-research"></div></div>
+    <div class="sec" data-sec="creative"><h2>Creative <span>8 sites</span></h2><div class="tiles" id="g-creative"></div></div>
+    <div class="empty" id="empty">Nothing matches. Try a site name, a store, or a word like “payroll”.</div>
+
+    <p class="foot">SSO = opens signed in. VAULT = portal fills the saved password, one click. LINK = public site, no login. INTERNAL = Wayne's Auto system, same session.</p>
+    <p class="foot">Signed in once. 24 sites, 0 passwords typed. Same board emailed daily 6:00 AM.</p>
+  </div>
+</section>
+
+<!-- ============ launch handoff ============ -->
+<div id="launch" role="dialog" aria-modal="true">
+  <div class="box">
+    <h3 id="l-name"></h3><div class="s" id="l-sub"></div>
+    <ol id="l-steps"></ol>
+    <div class="act"><button type="button" id="l-cancel">Cancel</button><button type="button" class="go" id="l-go" disabled>Open</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{
+/* ---------- data ---------- */
+const BOARD="usta-daily-board_4.html";
+const BOARD_KEY="03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"; // the daily board's unlock token
+const OPEN_SITES=true; // open the real site in a new tab after the handoff animation
+
+const APPS=[
+ // today
+ {g:"today",wide:1,ic:"DB",n:"Daily numbers",d:"Sat Sep 5 · 7 repair · 2 body · Manns · RE · AM Spirits",t:"int",url:BOARD,same:1,kw:"board dashboard numbers kpi revenue"},
+ {g:"today",ic:"AL",n:"Email alerts",d:"14 sent this week · 11 rules",t:"int",url:BOARD+"#alerts",same:1,kw:"rules digest notifications"},
+ // business systems
+ {g:"systems",ic:"RS",n:"Repair shop system",d:"7 stores · Powell, Schrock, Westerville +4",t:"int",kw:"ro work orders tires labor petty's ernie's hilliard complete brake"},
+ {g:"systems",ic:"BS",n:"Body shop system",d:"2 shops · Excite Collision, T&amp;C Auto Body",t:"int",kw:"collision estimates cycle"},
+ {g:"systems",ic:"ME",n:"Manns Expediting",d:"30 units · 4 past registration",t:"int",kw:"fleet trucks rent"},
+ {g:"systems",ic:"AC",n:"Accounting",d:"AR / AP · 11 entities",t:"int",kw:"invoices receivables payables"},
+ {g:"systems",ic:"FI",n:"Financing",d:"SBA 7(a) · $640k · underwriting",t:"int",kw:"loan acquisition deal close"},
+ {g:"systems",ic:"EM",n:"Email",d:"one inbox · 14 unread",t:"sso",url:"https://mail.google.com",kw:"gmail inbox"},
+ {g:"systems",ic:"RE",n:"Real estate",d:"8 properties",t:"int",kw:"property lot rt 161"},
+ {g:"systems",ic:"AM",n:"AM Spirits 1–5",d:"5 groups · 112 members · next Mon 5:00 AM",t:"int",kw:"meetup attendance dues"},
+ // management
+ {g:"management",ic:"GW",n:"Google Workspace",d:"email, calendar, drive",t:"sso",url:"https://workspace.google.com",kw:"gmail docs sheets"},
+ {g:"management",ic:"QB",n:"QuickBooks Online",d:"books, 11 entities",t:"vault",url:"https://qbo.intuit.com",kw:"accounting bookkeeping"},
+ {g:"management",ic:"HB",n:"Huntington Business",d:"banking",t:"vault",url:"https://www.huntington.com/business",kw:"bank accounts wires"},
+ {g:"management",ic:"AD",n:"ADP",d:"payroll, 140 employees",t:"sso",url:"https://workforcenow.adp.com",kw:"payroll hr"},
+ {g:"management",ic:"CC",n:"CCC ONE",d:"body shop estimating",t:"vault",url:"https://www.cccis.com",kw:"estimates collision"},
+ {g:"management",ic:"SA",n:"Samsara",d:"Manns fleet tracking",t:"sso",url:"https://cloud.samsara.com",kw:"gps telematics trucks"},
+ {g:"management",ic:"DS",n:"DocuSign",d:"contracts",t:"sso",url:"https://app.docusign.com",kw:"sign lease loi"},
+ {g:"management",ic:"MU",n:"Meetup",d:"AM Spirits",t:"vault",url:"https://www.meetup.com",kw:"groups events"},
+ // research
+ {g:"research",ic:"LN",n:"LoopNet",d:"commercial listings",t:"vault",url:"https://www.loopnet.com",kw:"real estate commercial"},
+ {g:"research",ic:"CS",n:"CoStar",d:"comps, market data",t:"vault",url:"https://www.costar.com",kw:"real estate comps"},
+ {g:"research",ic:"ZL",n:"Zillow",d:"residential watchlist",t:"vault",url:"https://www.zillow.com",kw:"homes real estate"},
+ {g:"research",ic:"FC",n:"Franklin Co. Auditor",d:"parcels, tax",t:"link",url:"https://www.franklincountyauditor.com",kw:"property tax parcel"},
+ {g:"research",ic:"BB",n:"Bloomberg",d:"markets",t:"vault",url:"https://www.bloomberg.com",kw:"news finance"},
+ {g:"research",ic:"WS",n:"WSJ",d:"news",t:"vault",url:"https://www.wsj.com",kw:"wall street journal"},
+ {g:"research",ic:"RW",n:"Ratchet+Wrench",d:"industry",t:"link",url:"https://www.ratchetandwrench.com",kw:"auto repair news"},
+ {g:"research",ic:"BZ",n:"BizBuySell",d:"shops for sale",t:"vault",url:"https://www.bizbuysell.com",kw:"acquisition listings"},
+ // creative
+ {g:"creative",ic:"CV",n:"Canva",d:"social, signage",t:"sso",url:"https://www.canva.com",kw:"design graphics"},
+ {g:"creative",ic:"CL",n:"Claude",d:"writing, analysis",t:"sso",url:"https://claude.ai",kw:"ai assistant"},
+ {g:"creative",ic:"MB",n:"Meta Business Suite",d:"Facebook, Instagram",t:"vault",url:"https://business.facebook.com",kw:"social ads"},
+ {g:"creative",ic:"GB",n:"Google Business Profile",d:"9 locations, reviews",t:"sso",url:"https://business.google.com",kw:"maps reviews listings"},
+ {g:"creative",ic:"YT",n:"YouTube Studio",d:"shop videos",t:"sso",url:"https://studio.youtube.com",kw:"video channel"},
+ {g:"creative",ic:"MC",n:"Mailchimp",d:"customer email",t:"vault",url:"https://login.mailchimp.com",kw:"newsletter campaigns"},
+ {g:"creative",ic:"AE",n:"Adobe Express",d:"graphics",t:"vault",url:"https://express.adobe.com",kw:"design images"},
+ {g:"creative",ic:"NT",n:"Notion",d:"ideas, planning",t:"vault",url:"https://www.notion.so",kw:"notes wiki"},
+];
+const TAG={sso:"SSO",vault:"VAULT",link:"LINK",int:"INTERNAL"};
+const $=s=>document.querySelector(s);
+
+/* ---------- screens ---------- */
+const show=id=>{document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id===id));window.scrollTo(0,0)};
+const session=()=>{try{return JSON.parse(sessionStorage.getItem("sso_session")||"null")}catch(e){return null}};
+const save=s=>{try{sessionStorage.setItem("sso_session",JSON.stringify(s))}catch(e){}};
+
+/* sign in */
+let via="password";
+$("#f-signin").addEventListener("submit",e=>{e.preventDefault();
+  const em=$("#email").value.trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){$("#e1").textContent="Enter your work email";return}
+  if(!$("#pass").value){$("#e1").textContent="Enter your password";$("#pass").focus();return}
+  via="password";toMfa()});
+document.querySelectorAll("[data-idp]").forEach(b=>b.addEventListener("click",()=>{via=b.dataset.idp;toMfa()}));
+function toMfa(){$("#e1").textContent="";$("#mfa-via").textContent="via "+via;$("#code").value="";$("#e2").textContent="";show("s-mfa");setTimeout(()=>$("#code").focus(),50)}
+$("#mfa-back").addEventListener("click",()=>{$("#pass").value="";show("s-signin");$("#pass").focus()});
+$("#code").addEventListener("input",e=>{e.target.value=e.target.value.replace(/\D/g,"").slice(0,6);if(e.target.value.length===6)$("#f-mfa").requestSubmit()});
+$("#f-mfa").addEventListener("submit",e=>{e.preventDefault();const c=$("#code").value;
+  if(c!=="123456"){$("#e2").textContent=c.length<6?"Enter the 6-digit code":"Code didn't match · try again";$("#code").select();return}
+  const exp=Date.now()+8*3600e3;save({user:"Wayne",email:$("#email").value.trim(),via,exp,opened:[]});
+  try{sessionStorage.setItem("ok",BOARD_KEY)}catch(e){} // hands the daily board a signed-in session
+  enter()});
+
+/* sign out */
+$("#signout").addEventListener("click",()=>{try{sessionStorage.removeItem("sso_session");sessionStorage.removeItem("ok")}catch(e){}$("#pass").value="";show("s-signin");toast("Signed out of all 24 sites");setTimeout(()=>$("#pass").focus(),50)});
+
+/* ---------- portal ---------- */
+function enter(){const s=session();if(!s||s.exp<Date.now()){try{sessionStorage.removeItem("sso_session")}catch(e){}show("s-signin");return}
+  const h=new Date().getHours();$("#greet").textContent=(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+", "+s.user;
+  const d=new Date();$("#subline").textContent=d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})+" · signed in "+s.via+" · 7 repair stores · 2 body shops · Manns Expediting · 5 AM Spirits groups · real estate";
+  $("#sess").textContent=new Date(s.exp).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
+  renderRecent(s);show("s-home")}
+
+function tile(a){const b=document.createElement("button");b.type="button";b.className="tile"+(a.wide?" wide":"");b.dataset.q=(a.n+" "+a.d+" "+(a.kw||"")+" "+TAG[a.t]).toLowerCase();
+  b.innerHTML=`<div class="ic">${a.ic}</div><div><div class="n">${a.n}</div><div class="d">${a.d}</div></div><span class="t"><span class="tag ${a.t}">${TAG[a.t]}</span></span>`;
+  b.addEventListener("click",()=>launch(a));return b}
+APPS.forEach(a=>$("#g-"+a.g).appendChild(tile(a)));
+
+/* search */
+const q=$("#q");
+q.addEventListener("input",()=>{const v=q.value.trim().toLowerCase();let any=0;
+  document.querySelectorAll(".tile").forEach(t=>{const m=!v||t.dataset.q.includes(v);t.classList.toggle("hide",!m);any+=m});
+  document.querySelectorAll(".sec[data-sec]").forEach(s=>{const vis=[...s.querySelectorAll(".tile")].some(t=>!t.classList.contains("hide"));s.classList.toggle("hide",!!v&&!vis)});
+  $("#sec-recent").style.display=v||!(session()||{}).opened?.length?"none":"";
+  $("#empty").style.display=v&&!any?"block":"none"});
+document.addEventListener("keydown",e=>{if(e.key==="/"&&$("#s-home").classList.contains("on")&&document.activeElement!==q){e.preventDefault();q.focus();q.select()}
+  if(e.key==="Escape"){if($("#launch").classList.contains("on"))closeLaunch();else if(document.activeElement===q){q.value="";q.dispatchEvent(new Event("input"));q.blur()}}});
+
+/* recent */
+function renderRecent(s){const r=$("#recent");r.innerHTML="";const list=(s.opened||[]).slice(-6).reverse();
+  $("#sec-recent").style.display=list.length?"":"none";$("#rc-n").textContent=list.length?list.length+" this session":"";$("#k-open").textContent=(s.opened||[]).length;
+  list.forEach(o=>{const d=document.createElement("div");d.className="row";d.innerHTML=`<span class="tag ${o.t}">${TAG[o.t]}</span><span style="font-weight:500">${o.n}</span><span style="color:var(--text-3);font-size:11px">${o.how}</span><span class="t">${o.at}</span>`;r.appendChild(d)})}
+
+/* ---------- launch handoff ---------- */
+let cur=null,timers=[];
+const STEPS={
+  sso:["Session verified · Wayne · Owner","Passing signed-in token to site","Site accepted · no password needed"],
+  vault:["Session verified · Wayne · Owner","Vault unlocked · saved login found","Filling username + password on the site"],
+  link:["Public site · no login required"],
+  int:["Session verified · Wayne · Owner","Same session · opening"]};
+const HOW={sso:"opened signed in",vault:"vault filled password",link:"public site",int:"internal"};
+function launch(a){cur=a;const L=$("#launch");$("#l-name").textContent=a.n;$("#l-sub").textContent=a.d.replace("&amp;","&")+" · "+TAG[a.t];
+  const ol=$("#l-steps");ol.innerHTML="";STEPS[a.t].forEach(t=>{const li=document.createElement("li");li.innerHTML="<i></i>"+t;ol.appendChild(li)});
+  $("#l-go").disabled=true;L.classList.add("on");
+  const lis=[...ol.children];timers.forEach(clearTimeout);timers=[];
+  lis.forEach((li,i)=>{timers.push(setTimeout(()=>{li.classList.add("doing")},i*520));timers.push(setTimeout(()=>{li.classList.remove("doing");li.classList.add("done");if(i===lis.length-1){$("#l-go").disabled=false;$("#l-go").focus()}},i*520+480))})}
+function closeLaunch(){timers.forEach(clearTimeout);$("#launch").classList.remove("on");cur=null}
+$("#l-cancel").addEventListener("click",closeLaunch);
+$("#launch").addEventListener("click",e=>{if(e.target.id==="launch")closeLaunch()});
+$("#l-go").addEventListener("click",()=>{const a=cur;if(!a)return;
+  const s=session();if(s){s.opened=(s.opened||[]).concat([{n:a.n,t:a.t,how:HOW[a.t],at:new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})}]);save(s);renderRecent(s)}
+  closeLaunch();
+  if(a.url&&a.same){location.href=a.url;return}
+  if(a.url&&OPEN_SITES){window.open(a.url,"_blank","noopener");toast(a.n+" opened in a new tab · "+HOW[a.t])}
+  else toast(a.n+" · "+(a.t==="int"?"opens in the shop system (not part of this demo)":"opened"))});
+
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600)}
+
+/* ---------- boot ---------- */
+if(session())enter();else{show("s-signin");setTimeout(()=>$("#pass").focus(),50)}
+})();
+</script>
+</body>
+</html>
