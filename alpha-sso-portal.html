@@ -56,6 +56,7 @@ h1{margin:0;font-size:18px;font-weight:500}h2{margin:0 0 8px;font-size:11px;font
 .sec{margin-top:22px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .tile{background:var(--bg-2);border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 14px;min-height:62px;display:flex;align-items:center;gap:12px;text-align:left;color:var(--text);width:100%}
+.tile{min-width:0}.tile>div:not(.ic){min-width:0}.two>*{min-width:0}.tile .t{flex:none}
 .tile:hover{background:var(--bg-3)}.tile:focus-visible{outline:1px solid var(--mark);outline-offset:-1px}
 .tile .ic{width:30px;height:30px;flex:none;border:1px solid var(--line-2);display:grid;place-items:center;font:500 11px var(--mono);color:var(--text-2);background:var(--bg)}
 .tile .n{font-weight:500}.tile .d{font-family:var(--mono);font-size:11px;color:var(--text-2);margin-top:2px}.tile .t{margin-left:auto}
@@ -87,7 +88,9 @@ h1{margin:0;font-size:18px;font-weight:500}h2{margin:0 0 8px;font-size:11px;font
   .top .r{width:auto;gap:8px;font-size:10px}.top .r .sess{display:none}
   .page{padding:12px}.head{flex-direction:column;align-items:flex-start;gap:6px}
   .strip{grid-template-columns:repeat(2,minmax(0,1fr))}.k{min-height:0;padding:9px 10px}.k .v{font-size:18px}
-  .tiles{grid-template-columns:1fr 1fr}.tile{padding:9px 10px;min-height:0}.tile.wide{grid-column:span 2}
+  .tiles{grid-template-columns:1fr}.tile{padding:10px 12px;min-height:56px}.tile.wide{grid-column:auto}
+  .in,.search input{font-size:16px}.btn{padding:12px}.link{padding:8px 0}.top .r button{padding:8px 10px}
+  #launch .box{width:100%;max-width:none;margin:0 12px}#launch .act button{padding:12px}
   h1{font-size:16px}
 }
 </style>
